@@ -142,23 +142,29 @@ Key devDependencies in `package.json`:
 ### Home Screen
 Displays options to open an account, transfer funds, view transaction history, and see all accounts.
 
-![Home Screen](path-to-home-screenshot)
+![image](https://github.com/user-attachments/assets/3727d25c-69b1-4edd-b641-a373d42b12d6)
+
 
 ### Account Creation
 Form to open a new account with validation and success messages.
 
-![Account Creation](path-to-account-creation-screenshot)
+<img width="1327" alt="image" src="https://github.com/user-attachments/assets/fff225d4-b50f-4e1f-9fdd-a677f27bc3a2">
+<img width="1354" alt="image" src="https://github.com/user-attachments/assets/e850d69d-2ec8-428b-a747-9567b7c7271c">
+
+
 
 ### Fund Transfer
 Interface to select accounts and transfer funds with validations for balance checks.
 
-![Fund Transfer](path-to-fund-transfer-screenshot)
+<img width="1342" alt="image" src="https://github.com/user-attachments/assets/e4652892-3e7b-417b-b78b-30eeaddfc696">
+<img width="1402" alt="image" src="https://github.com/user-attachments/assets/a6df88da-02ea-468f-904b-18f39969e169">
+<img width="1338" alt="image" src="https://github.com/user-attachments/assets/5fe61d51-a0b2-479a-ad04-af853a72761c">
+
 
 ### Transaction History
 Lists all transactions with filtering options to view specific account transactions.
 
-![Transaction History](path-to-transaction-history-screenshot)
-
+<img width="1345" alt="image" src="https://github.com/user-attachments/assets/2726d6ac-a0ee-4c81-a136-912e21f513e7">
 
 
 
