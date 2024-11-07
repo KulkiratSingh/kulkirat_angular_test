@@ -1,32 +1,71 @@
-
-<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
-
-    <label for="accountName">Account Name:</label>
-    <input id="accountName" formControlName="accountName" >
-    <div *ngIf="accountForm.get('accountName')?.errors?.['required'] && accountForm.get('accountName')?.touched">
-        Account name is required 
+<div class="container py-5" >
+  <div class="row justify-content-center">
+    <!-- Left Content  -->
+    <div class="col-lg-6 text-white mb-5">
+      <h1 class="display-4 fw-bold">Open a New Account</h1>
+      <p class="lead text-light-gray mb-4">
+        Create a Chequing or Savings account and start managing your funds with ease.
+      </p>
+      <p>
+        <i class="bi bi-arrow-left text-warning me-2"></i>
+        <a routerLink="/home" class="text-warning">Back to Home</a>
+      </p>
     </div>
 
-    <!-- Initial Balance Field -->
-    <label for="initialBalance">Initial Balance:</label>
-    <input id="initialBalance" formControlName="initialBalance" type="number" min="0">
-    <div *ngIf="accountForm.get('initialBalance')?.invalid && accountForm.get('initialBalance')?.touched">
-      Initial balance must be a positive number.
+    <!-- Right Content (Form Section) -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-5">
+          <!-- Confirmation Message -->
+          <div *ngIf="accountCreated" class="alert alert-success d-flex align-items-center" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> Account created successfully!
+            <button class="btn btn-primary btn-sm ms-auto" routerLink="/home">
+              Go to Home
+            </button>
+          </div>
+
+          <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+            <!-- Account Name Field -->
+            <div class="mb-4">
+              <label for="accountName" class="form-label">Account Name: *</label>
+              <input id="accountName" class="form-control" formControlName="accountName" placeholder="Enter account name">
+              <div *ngIf="accountForm.get('accountName')?.errors?.['required'] && accountForm.get('accountName')?.touched" class="form-text text-danger">
+                Account name is required.
+              </div>
+            </div>
+
+            <!-- Initial Balance Field -->
+            <div class="mb-4">
+              <label for="initialBalance" class="form-label">Initial Balance: *</label>
+              <input id="initialBalance" class="form-control" type="number" formControlName="initialBalance" placeholder="Enter initial balance" min="0">
+              <div *ngIf="accountForm.get('initialBalance')?.invalid && accountForm.get('initialBalance')?.touched" class="form-text text-danger">
+                Initial balance must be a positive number.
+              </div>
+            </div>
+
+            <!-- Account Type Selection -->
+            <div class="mb-4">
+              <label class="form-label">Account Type:</label>
+              <div class="form-check">
+                <input type="radio" formControlName="accountType" value="Chequing" id="chequing" class="form-check-input">
+                <label for="chequing" class="form-check-label">Chequing</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" formControlName="accountType" value="Savings" id="savings" class="form-check-input">
+                <label for="savings" class="form-check-label">Savings</label>
+              </div>
+            </div>
+
+            <!-- Submit Shared Button Component -->
+            <div class="text-center">
+              <app-custom-button
+                [buttonText]="'Create Account'"
+                [buttonClass]="accountForm.get('accountType')?.value === 'Chequing' ? 'btn btn-primary' : 'btn btn-success'">
+              </app-custom-button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  
-    <!-- Account Type Selection -->
-    <label>Account Type:</label>
-    <label>
-      <input type="radio" formControlName="accountType" value="Chequing"> Chequing
-    </label>
-    <label>
-      <input type="radio" formControlName="accountType" value="Savings"> Savings
-    </label>
-  
-    <!-- Conditional Submit Button with Styling Based on Account Type -->
-    <app-custom-button
-        [buttonText]="'Create Account'"
-        [buttonClass]="accountForm.get('accountType')?.value === 'Chequing' ? 'chequing-style' : 'savings-style'">
-  </app-custom-button>
-  </form>
-  
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container py-5">
+    <h2 class="display-4 fw-bold mb-4 text-white">All Accounts</h2>
+    
+    <div class="row">
+      <div *ngFor="let account of accounts" class="col-md-6 mb-4">
+        <div class="card account-card border-0 shadow">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between">
+              <div>
+                <p class="text-muted mb-1">Balance</p>
+                <h3 class="mb-2">${{ account.initialBalance | number:'1.2-2' }}</h3>
+                <span class="badge rounded-pill text-white px-3 py-2"
+                      [ngClass]="{'bg-primary': account.accountType === 'Chequing', 'bg-success': account.accountType === 'Savings'}">
+                  {{ account.accountType }}
+                </span>
+              </div>
+              <div class="credit-info text-white p-3 rounded" 
+                   [ngClass]="{'bg-primary': account.accountType === 'Chequing', 'bg-success': account.accountType === 'Savings'}">
+                <div class="mb-2">
+                  <i [ngClass]="{
+                      'bi bi-wallet2': account.accountType === 'Chequing',
+                      'bi bi-piggy-bank': account.accountType === 'Savings'
+                  }"></i>
+                </div>
+                <div class="card-number mb-1">{{ account.accountName }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <button class="btn btn-warning" routerLink="/home">
+        <i class="bi bi-arrow-left me-2"></i> Back to Home
+      </button>
+    </div>
+  </div>
+  

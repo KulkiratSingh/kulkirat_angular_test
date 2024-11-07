@@ -20,6 +20,7 @@ export class FundTransferComponent implements OnInit {
   from_remaining_balance_message: string = ''
   to_remaining_balance_message: string = '';
   filteredToAccounts: Account[] = []; // Filtered list for "To Account"
+  noToAccountAvailable: boolean = false;
 
   constructor(public fb: FormBuilder, private accountService: AccountService) { }
 
@@ -28,11 +29,7 @@ export class FundTransferComponent implements OnInit {
     this.filteredToAccounts = this.accounts;
 
     this.transferForm.get('fromAccount')?.valueChanges.subscribe((selectedAccount) => {
-      this.filteredToAccounts = this.accounts.filter(account => {
-        return account.accountName !== selectedAccount
-      });
-   
-      this.transferForm.get('toAccount')?.reset(); // Clear "To Account" selection when "From Account" changes
+      this.updateToAccountOptions(selectedAccount);
       this.checkAmount(this.transferForm.get('amount')?.value)
     })
 
@@ -40,6 +37,19 @@ export class FundTransferComponent implements OnInit {
       this.checkAmount(amount)
     })
     
+  }
+
+  updateToAccountOptions(selectedAccount: string): void {
+    // Filter accounts for the "To Account" dropdown
+    this.filteredToAccounts = this.accounts.filter(account => account.accountName !== selectedAccount);
+
+    // Check if there are no options for the "To Account" dropdown
+    this.noToAccountAvailable = this.filteredToAccounts.length === 0;
+
+    // Reset "To Account" selection if no options are available
+    if (this.noToAccountAvailable) {
+      this.transferForm.get('toAccount')?.reset();
+    }
   }
 
 
@@ -83,18 +93,18 @@ export class FundTransferComponent implements OnInit {
 
       this.transferSuccess = `Transferred <b>$${amount}</b> from <b>${fromAccountName}</b> to <b>${toAccountName}</b>.`;
       this.from_remaining_balance_message = `Remaining Balance In <b>${fromAccountName}</b> Account is <b>${formAccountBalance}</b>.`;
-      this.to_remaining_balance_message = `Remaining Balance In <b>${toAccountName}</b> Account is <b>${toAccountBalance}</b>.`;
+      this.to_remaining_balance_message = `Balance In Transferred Account: <b>${toAccountName}</b> is <b>${toAccountBalance}</b>.`;
       
-
+  
       this.transferForm.reset(); 
       this.transferForm.get('amount')?.setErrors(null);
 
-      // Set timeout to clear success messages after 5 seconds
+      // Set timeout to clear success messages after some time
       setTimeout(() => {
         this.transferSuccess = '';
         this.from_remaining_balance_message = '';
         this.to_remaining_balance_message = '';
-      }, 5000);
+      }, 20000);
     } else {
       this.transferSuccess = 'Transfer failed. Check account details or balance.';
     }

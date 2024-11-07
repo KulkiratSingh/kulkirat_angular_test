@@ -6,11 +6,13 @@ import { AccountCreationComponent } from './account-creation/account-creation.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomButtonComponent } from '../shared/custom-button/custom-button.component';
 import { SharedModule } from '../shared/shared.module';
+import { ViewAllAccountsComponent } from './view-all-accounts/view-all-accounts.component';
 
 
 @NgModule({
   declarations: [
-    AccountCreationComponent
+    AccountCreationComponent,
+    ViewAllAccountsComponent
   ],
   imports: [
     CommonModule,

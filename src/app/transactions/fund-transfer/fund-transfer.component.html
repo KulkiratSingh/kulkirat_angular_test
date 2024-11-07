@@ -1,35 +1,73 @@
-<form [formGroup]="transferForm" (ngSubmit)="onTransfer()">
-    <label for="fromAccount">From Account</label>
-    <select formControlName="fromAccount" id="fromAccount">
-      <option *ngFor="let account of accounts" [value]="account.accountName">
-        {{ account.accountName }} (Balance: {{ account.initialBalance }})
-      </option>
-    </select>
-  
-    <label for="toAccount">To Account</label>
-    <select formControlName="toAccount" id="toAccount">
-      <option *ngFor="let account of filteredToAccounts" [value]="account.accountName">
-        {{ account.accountName }} (Balance: {{ account.initialBalance }})
-      </option>
-    </select>
-  
-    <label for="amount">Amount</label>
-    <input id="amount" type="number" formControlName="amount" min="1">
-    
-
-    <div *ngIf="transferForm.get('amount')?.errors?.['min']">
-      Error: Transfer amount must be greater than 0.
+<div class="container py-5">
+  <div class="row">
+    <!-- Left Side: Heading and Description -->
+    <div class="col-lg-6 text-white">
+      <h2 class="display-4 fw-bold mb-3">Fund Transfer</h2>
+      <p class="lead mb-5 text-light">
+        Transfer funds between your accounts with ease. Select the source and destination accounts, specify the amount, and confirm your transfer.
+      </p>
+      <a routerLink="/home" class="text-warning">
+        <i class="bi bi-arrow-left"></i> Back to Home
+      </a>
     </div>
-    <div *ngIf="transferForm.get('amount')?.errors?.['exceedsBalance']">
-      Error: Transfer amount exceeds the balance of the selected account.
+
+    <!-- Right Side: Fund Transfer Form -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+
+          <form [formGroup]="transferForm" (ngSubmit)="onTransfer()">
+            
+            <div class="mb-3">
+              <label for="fromAccount" class="form-label">From Account *</label>
+              <select formControlName="fromAccount" id="fromAccount" class="form-select">
+                <option *ngFor="let account of accounts" [value]="account.accountName">
+                  {{ account.accountName }} (Balance: ${{ account.initialBalance | number:'1.2-2' }})
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="toAccount" class="form-label">To Account *</label>
+              <select formControlName="toAccount" id="toAccount" class="form-select">
+                <option *ngFor="let account of filteredToAccounts" [value]="account.accountName">
+                  {{ account.accountName }} (Balance: ${{ account.initialBalance | number:'1.2-2' }})
+                </option>
+              </select>
+              <div *ngIf="noToAccountAvailable" class="text-danger mt-2">
+                No other accounts available for transfer.   
+                <a routerLink="/accounts/create-account" class="text-primary" style="cursor: pointer; text-decoration: underline;">
+                  Create a new account
+                </a>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount *</label>
+              <input id="amount" type="number" formControlName="amount" min="1" class="form-control" placeholder="Enter amount" />
+              
+              <div *ngIf="transferForm.get('amount')?.errors?.['min']" class="text-danger mt-2">
+                Error: Transfer amount must be greater than 0.
+              </div>
+              <div *ngIf="transferForm.get('amount')?.errors?.['exceedsBalance']" class="text-danger mt-2">
+                Error: Transfer amount exceeds the balance of the selected account.
+              </div>
+            </div>
+
+          
+            <div class="text-center">
+
+              <button type="submit" class="btn btn-primary mt-2" [disabled]="transferForm.invalid">Transfer Funds</button>
+  
+            </div>
+
+            <!-- Success Messages -->
+            <div *ngIf="transferSuccess" class="alert alert-success mt-3" [innerHTML]="transferSuccess"></div>
+            <div *ngIf="from_remaining_balance_message" class="alert alert-info mt-2" [innerHTML]="from_remaining_balance_message"></div>
+            <div *ngIf="to_remaining_balance_message" class="alert alert-primary mt-2" [innerHTML]="to_remaining_balance_message"></div>
+          </form>
+        </div>
+      </div>
     </div>
-  
-    <button type="submit" [disabled]="transferForm.invalid">Transfer Funds</button>
-  
-
-
-  <div *ngIf="transferSuccess" [innerHTML]="transferSuccess"></div>
-  <div *ngIf="from_remaining_balance_message" [innerHTML]="from_remaining_balance_message"></div>
-  <div *ngIf="to_remaining_balance_message" [innerHTML]="to_remaining_balance_message"></div>
-  </form>
-  
+  </div>
+</div>

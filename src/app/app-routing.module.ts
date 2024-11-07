@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: 'create-account', 
+    path: 'accounts', 
     loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsModule) //lazy loading 
   },
   { path: 'transactions', 
@@ -17,13 +17,6 @@ const routes: Routes = [
 ];
 
 
-// const routes: Routes = [
-//   { path: 'create-account', component: AccountCreationComponent },
-//   { path: 'transactions/fund-transfer', component: FundTransferComponent },
-//   { path: 'transactions/history', component: TransactionHistoryComponent },
-//   { path: '', redirectTo: '/home', pathMatch: 'full' }, 
-//   { path: '**', redirectTo: '/not-found' } // Optional: handle unknown routes
-// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

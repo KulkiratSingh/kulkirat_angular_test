@@ -1,1 +1,107 @@
-<p>home works!</p>
+<div class="home-section  overflow-hidden">
+    <div class="container">
+      <div class="row min-vh-100 align-items-center ">
+        <!-- Left Content -->
+        <div class="col-lg-7 text-white">
+          <h1 class="display-1 fw-bold mb-4 home-title">
+            Kulkirat's Angular Banking System<br> Web App Test<br>
+          </h1>
+          <p class="lead mb-5 text-light-gray" style="max-width: 500px;">
+            Manage your accounts, transfer funds, and view transaction history. The power of Online Banking is in your hands with this app.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-5">
+            <button class="btn btn-outline-light btn-sm p-3 rounded-pill  border-2" routerLink="accounts/create-account">
+                Open An Account
+              </button>
+            <button class="btn btn-outline-warning btn-sm p-3 rounded-pill  border-2" routerLink="transactions/fund-transfer">
+                Transfer Funds 
+            </button>
+            <button class="btn btn-outline-info btn-sm p-3 text-light rounded-pill  border-2" routerLink="transactions/history">
+                Transaction History
+            </button>
+
+            <button class="btn btn-outline-success text-light btn-sm p-3 rounded-pill border-2" routerLink="accounts/view-all-accounts">
+                See All Accounts
+            </button>
+         
+          </div>
+
+          
+          <!-- Avatars and Stats -->
+          <div class="d-flex flex-column flex-md-row align-items-start align-items-md-end gap-4 ">
+            <div class="d-flex me-2">
+              <div class="avatar bg-warning ms-2">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <div class="avatar bg-danger">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <div class="avatar bg-primary">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <div class="avatar bg-dark">
+                <i class="bi bi-person-fill"></i>
+              </div>
+            </div>
+            <div class="stats-container">
+              <h2 class="display-4 fw-bold mb-0">19M+</h2>
+              <p class="text-light-gray mb-0">World Wide Active User</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side -->
+        <div class="col-lg-5 position-relative">
+            <div class="cards-container">
+             
+              <div class="card account-card mb-4 border-0" *ngFor="let account of accounts.slice(0, 3)">
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <p class="text-muted mb-1">Balance</p>
+                      <h3 class="mb-2">${{ account.initialBalance | number:'1.2-2' }}</h3> <!--I am using number pipe to display properly-->
+                      <span class="badge rounded-pill  text-white border px-3 py-2" [ngClass]="{'bg-primary': account.accountType === 'Chequing', 'bg-success': account.accountType === 'Savings'}">
+                        {{ account.accountType }}
+                      </span>
+                    </div>
+                    <div class="credit-info text-white p-3 rounded" [ngClass]="{'bg-primary': account.accountType === 'Chequing', 'bg-success': account.accountType === 'Savings'}">
+                        <div class="mb-2">
+                            <i 
+                                class="me-2"
+                                [ngClass]="
+                                    {
+                                    'bi bi-wallet2': account.accountType === 'Chequing',
+                                    'bi bi-piggy-bank': account.accountType === 'Savings'
+                                    }
+                                "
+                            >
+                          </i>
+                        </div>
+                        <div class="card-number mb-1 text-break">{{ account.accountName }}</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+      
+              <button *ngIf="showAllAccounts" class="btn btn-outline-secondary mb-3 w-100" routerLink="accounts/view-all-accounts">
+                See All Accounts
+              </button>
+      
+         
+              <div class="card border-2 border-dashed h-auto">
+                <div class="card-body p-4">
+                  <button class="btn w-100 h-100 text-muted d-flex align-items-center justify-content-center " 
+                         routerLink="accounts/create-account"
+                   >
+                    <i class="bi bi-plus-lg me-2"></i>
+                    Add account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
