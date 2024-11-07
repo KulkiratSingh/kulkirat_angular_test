@@ -66,7 +66,6 @@ This project was completed as part of a take-home assignment for BrainRidge Cons
 
 ```bash
 git clone https://github.com/your-username/banking-app.git
-cd banking-app
 ```
 
 ### 2. Install Dependencies
