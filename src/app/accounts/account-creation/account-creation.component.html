@@ -1,0 +1,32 @@
+
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+
+    <label for="accountName">Account Name:</label>
+    <input id="accountName" formControlName="accountName" >
+    <div *ngIf="accountForm.get('accountName')?.errors?.['required'] && accountForm.get('accountName')?.touched">
+        Account name is required 
+    </div>
+
+    <!-- Initial Balance Field -->
+    <label for="initialBalance">Initial Balance:</label>
+    <input id="initialBalance" formControlName="initialBalance" type="number" min="0">
+    <div *ngIf="accountForm.get('initialBalance')?.invalid && accountForm.get('initialBalance')?.touched">
+      Initial balance must be a positive number.
+    </div>
+  
+    <!-- Account Type Selection -->
+    <label>Account Type:</label>
+    <label>
+      <input type="radio" formControlName="accountType" value="Chequing"> Chequing
+    </label>
+    <label>
+      <input type="radio" formControlName="accountType" value="Savings"> Savings
+    </label>
+  
+    <!-- Conditional Submit Button with Styling Based on Account Type -->
+    <app-custom-button
+        [buttonText]="'Create Account'"
+        [buttonClass]="accountForm.get('accountType')?.value === 'Chequing' ? 'chequing-style' : 'savings-style'">
+  </app-custom-button>
+  </form>
+  

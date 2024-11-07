@@ -1,0 +1,35 @@
+<form [formGroup]="transferForm" (ngSubmit)="onTransfer()">
+    <label for="fromAccount">From Account</label>
+    <select formControlName="fromAccount" id="fromAccount">
+      <option *ngFor="let account of accounts" [value]="account.accountName">
+        {{ account.accountName }} (Balance: {{ account.initialBalance }})
+      </option>
+    </select>
+  
+    <label for="toAccount">To Account</label>
+    <select formControlName="toAccount" id="toAccount">
+      <option *ngFor="let account of filteredToAccounts" [value]="account.accountName">
+        {{ account.accountName }} (Balance: {{ account.initialBalance }})
+      </option>
+    </select>
+  
+    <label for="amount">Amount</label>
+    <input id="amount" type="number" formControlName="amount" min="1">
+    
+
+    <div *ngIf="transferForm.get('amount')?.errors?.['min']">
+      Error: Transfer amount must be greater than 0.
+    </div>
+    <div *ngIf="transferForm.get('amount')?.errors?.['exceedsBalance']">
+      Error: Transfer amount exceeds the balance of the selected account.
+    </div>
+  
+    <button type="submit" [disabled]="transferForm.invalid">Transfer Funds</button>
+  
+
+
+  <div *ngIf="transferSuccess" [innerHTML]="transferSuccess"></div>
+  <div *ngIf="from_remaining_balance_message" [innerHTML]="from_remaining_balance_message"></div>
+  <div *ngIf="to_remaining_balance_message" [innerHTML]="to_remaining_balance_message"></div>
+  </form>
+  
