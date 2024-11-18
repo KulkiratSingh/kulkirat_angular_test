@@ -71,7 +71,7 @@ This project was completed as part of a take-home assignment for a technical int
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/kulkirat_angular_test.git
+git clone https://github.com/KulkiratSingh/kulkirat_angular_test.git
 ```
 
 ### 2. Change the directory after cloning (aka go the folder)
