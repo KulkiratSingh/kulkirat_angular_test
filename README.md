@@ -15,12 +15,15 @@ Form to open a new account with validation and success messages.
 
 
 ### Fund Transfer
-Interface to select accounts and transfer funds with validations for balance checks.
+Interface to select accounts and transfer funds with various validations check such as balance checks and only one account check.
 
 <img width="1342" alt="image" src="https://github.com/user-attachments/assets/e4652892-3e7b-417b-b78b-30eeaddfc696">
 <img width="1402" alt="image" src="https://github.com/user-attachments/assets/a6df88da-02ea-468f-904b-18f39969e169">
-<img width="1346" alt="image" src="https://github.com/user-attachments/assets/3028aac9-588c-41a3-aa9e-5dfeb15c8717">
 <img width="1338" alt="image" src="https://github.com/user-attachments/assets/5fe61d51-a0b2-479a-ad04-af853a72761c">
+
+If just **one account** is created and if user does a Funds Tranfer, then following **validation message** to enhance user experience:
+
+<img width="1346" alt="image" src="https://github.com/user-attachments/assets/3028aac9-588c-41a3-aa9e-5dfeb15c8717">
 
 
 ### Transaction History
