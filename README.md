@@ -19,6 +19,7 @@ Interface to select accounts and transfer funds with validations for balance che
 
 <img width="1342" alt="image" src="https://github.com/user-attachments/assets/e4652892-3e7b-417b-b78b-30eeaddfc696">
 <img width="1402" alt="image" src="https://github.com/user-attachments/assets/a6df88da-02ea-468f-904b-18f39969e169">
+<img width="1346" alt="image" src="https://github.com/user-attachments/assets/3028aac9-588c-41a3-aa9e-5dfeb15c8717">
 <img width="1338" alt="image" src="https://github.com/user-attachments/assets/5fe61d51-a0b2-479a-ad04-af853a72761c">
 
 
@@ -27,6 +28,8 @@ Lists all transactions with filtering options to view specific account transacti
 
 <img width="1345" alt="image" src="https://github.com/user-attachments/assets/2726d6ac-a0ee-4c81-a136-912e21f513e7">
 
+### All Accounts Page
+<img width="1382" alt="image" src="https://github.com/user-attachments/assets/4d2f7434-1b47-4487-8990-09ddd6f11bb8">
 
 ## Overview
 
@@ -35,7 +38,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This is a banking transactions web application built with Angular (v14), demonstrating basic banking operations such as creating accounts, transferring funds between accounts, and viewing transaction history. The application is styled with Bootstrap and includes a responsive design, enabling users to manage their accounts, view recent transactions, and perform fund transfers.
 
-This project was completed as part of a take-home assignment for BrainRidge Consulting Inc. showcasing the implementation of common banking features and UI practices in Angular.
+This project was completed as part of a take-home assignment for a technical interview. showcasing the implementation of common banking features and UI practices in Angular.
 
 ## Features
 
@@ -65,10 +68,16 @@ This project was completed as part of a take-home assignment for BrainRidge Cons
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/banking-app.git
+git clone https://github.com/your-username/kulkirat_angular_test.git
 ```
 
-### 2. Install Dependencies
+### 2. Change the directory after cloning (aka go the folder)
+
+```bash
+cd kulkirat_angular_test
+```
+
+### 3. Install Dependencies
 
 Use npm to install the project's dependencies.
 
@@ -76,7 +85,7 @@ Use npm to install the project's dependencies.
 npm install
 ```
 
-### 3. Run the Application
+### 4. Run the Application
 
 To start the Angular development server:
 
